@@ -28,8 +28,8 @@ class PCAPModel:
                 rtp_model = rtp_models.get(dst_address)
                 if mpeg2_ts_model:
                     rtp = RTPModel.parse(ip.data)
-                    rtp_model.check_seq_number(timestamp, dst_address, rtp)
-                    mpeg2_ts_model.check_cc(timestamp, dst_address, rtp.container)
+                    rtp_model.check_seq_number(dst_address, timestamp, rtp)
+                    mpeg2_ts_model.check_cc(dst_address, timestamp, rtp.container)
                     if output_dir:
                         output_csvs.get(dst_address).write(f"{timestamp},{rtp.seq}\n")
                     if is_pcap_output:
